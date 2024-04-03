@@ -1,0 +1,32 @@
+soru3:
+SELECT ad,soyad,maas FROM Calisanlar Where calisan_birim_id IN ('1','2')
+
+soru4:
+SELECT ad,soyad,maas FROM Calisanlar Where maas = (SELECT max(maas) FROM Calisanlar)
+
+soru5:
+SELECT calisan_birim_id, COUNT (calisan_birim_id) as 'calisan_sayisi' FROM Calisanlar GROUP BY calisan_birim_id
+
+soru6:
+SELECT unvan_calisan, COUNT(unvan_calisan) as 'Çalışan Sayısı' FROM Unvan GROUP BY unvan_calisan Having COUNT(unvan_calisan) > 1
+
+soru7:
+SELECT ad,soyad,maas FROM Calisanlar Where maas BETWEEN 50000 AND 100000
+
+soru8:
+SELECT ad, soyad, calisan_birim_id, unvan_calisan, ikramiye_ucret FROM Calisanlar 
+INNER JOIN Ikramiye on calisan_id = ikramiye_calisan_id INNER JOIN Unvan on calisan_id = unvan_calisan_id
+
+soru9:
+SELECT ad,soyad,unvan_calisan
+FROM Calisanlar INNER JOIN Unvan on calisan_id = unvan_calisan_id
+WHERE unvan_calisan IN ('Yonetici','Mudur')
+
+soru10:
+SELECT Birim.birim_ad, Calisanlar.ad, Calisanlar.soyad, Calisanlar.maas
+From Birim INNER JOIN Calisanlar on Birim.birim_id = Calisanlar.calisan_birim_id
+Where Calisanlar.maas = (Select max(maas) FROM Calisanlar Where Calisanlar.calisan_birim_id = Birim.birim_id)
+
+
+
+
